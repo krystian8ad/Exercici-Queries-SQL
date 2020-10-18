@@ -1,0 +1,34 @@
+SELECT count(*) FROM flights;
+
+SELECT Origin,AVG(ArrDelay),AVG(DepDelay) 
+	FROM flights 
+	GROUP BY origin 
+	ORDER BY Origin ASC;
+
+SELECT Origin,colYear,colMonth,AVG(ArrDelay) 
+	FROM flights
+	GROUP BY origin,colYear,colMonth 
+	ORDER BY Origin ASC;
+        
+SELECT Origin,colYear,colMonth,AVG(ArrDelay) 
+	FROM flights
+	GROUP BY origin,colYear,colMonth 
+	ORDER BY Origin ASC
+	INNER JOIN airports ON flights.origin = airports.city;
+        
+SELECT UniqueCarrier,colYear,colMonth,Cancelled
+	FROM flights
+	WHERE Cancelled!=0
+	ORDER BY Cancelled DESC;
+        
+SELECT TailNum,distance
+	FROM flights
+    	GROUP BY TailNum
+    	ORDER BY distance DESC
+    	LIMIT 10;
+    
+SELECT UniqueCarrier,AVG(ArrDelay)
+	FROM flights
+    	WHERE AVG(ArrDelay)>10
+    	GROUP BY UniqueCarrier
+    	ORDER BY AVG(ArrDelay) DESC;
